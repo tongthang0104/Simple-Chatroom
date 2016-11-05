@@ -1,0 +1,7 @@
+<div>
+  <div ng-hide="editing" ng-click="editing=true">{{user.nickname}}</div>
+  <input ng-blur="editing = false" class="nickname" type="text" ng-model="user.nickname"/>
+  <div class="btn">
+      <a href="" ng-click="register()">Log in</a>
+  </div>
+</div>
