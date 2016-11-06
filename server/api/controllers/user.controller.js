@@ -6,12 +6,13 @@ module.exports.register = function(req, res) {
   console.log('user registering');
 
   const nickname = req.body.nickname;
+  const avatar = `http://api.adorable.io/avatar/50/${nickname}`;
 
   User.create({
-    nickname: nickname
+    nickname: nickname,
+    avatar: avatar
   }, function(err, user) {
     if (err) {
-      console.log('nooo');
       console.error(err);
       res.status(400).json(err);
     } else {
@@ -23,21 +24,20 @@ module.exports.register = function(req, res) {
   });
 };
 
-module.exports.authenticate = function(req, res, next) {
-  const headerExists = req.headers.authorization;
+module.exports.fetchAllUsers = function(req, res) {
+  console.log('Get all users');
 
-  if (headerExists) {
-    const token = req.headers.authorization.split(' ')[1];
-    jwt.verify(token, 's3cr3t', function(error, decoded) {
-      if (error) {
-        console.error(error);
-        res.status(401).json('Unauthorized');
+  User
+    .find()
+    .exec(function(err, users) {
+      if (err) {
+        console.error(err);
+        res
+        .status(500)
+        .json(err);
       } else {
-        req.user = decoded.username;
-        next();
+        console.log('Found all users', users.length);
+        res.json(users);
       }
     });
-  } else {
-    res.status(403).json('No token provided');
-  }
-}
+};

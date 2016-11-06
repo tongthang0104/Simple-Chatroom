@@ -1,13 +1,24 @@
 'use strict';
 
-function services($http) {
+function services($http, $window) {
   this.register = function(user) {
     return $http({
       method: 'POST',
       url: 'api/user/register',
       data: user
     }).then(function(response) {
-      return response;
+      return response.data;
+    }).catch(function(err) {
+      console.error(err);
+    });
+  };
+
+  this.fetchAllUsers = function() {
+    return $http({
+      method: 'GET',
+      url: 'api/user/fetchAllUsers'
+    }).then(function(response) {
+      return response.data;
     }).catch(function(err) {
       console.error(err);
     });
@@ -28,7 +39,7 @@ function services($http) {
   this.fetchMessages = function() {
     return $http({
       method: 'GET',
-      url: 'api/chat/fetch'
+      url: 'api/chat/fetchAll'
     }).then(function(response) {
       return response;
     }).catch(function(err) {

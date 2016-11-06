@@ -6,8 +6,24 @@ const userSchema = new mongoose.Schema({
     require: true
   },
   avatar: {
-    type: String
+    type: String,
+    require: true
+  }
+});
+
+const messagesSchema = new mongoose.Schema({
+
+  user: userSchema,
+  message: {
+    type: String,
+    require: true
+  },
+
+  createOn: {
+    type: Date,
+    'default': Date.now
   }
 });
 
 mongoose.model('User', userSchema);
+mongoose.model('Messages', messagesSchema);

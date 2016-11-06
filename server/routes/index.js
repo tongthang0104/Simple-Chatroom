@@ -9,11 +9,11 @@ router
   .post(userCtrl.register);
 
 router
-  .route('/chat/send')
-  .post(chatCtrl.sendMessages);
+  .route('/user/fetchAllUsers')
+  .get(userCtrl.fetchAllUsers);
 
-router
-  .route('/chat/fetch')
-  .post(chatCtrl.fetchMessages);
+// router
+//   .route('/chat/fetchAllMessages')
+//   .post(chatCtrl.fetchAllMessages);
 
 module.exports = router;
