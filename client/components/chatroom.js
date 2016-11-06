@@ -1,11 +1,9 @@
 'use strict';
 
-function ChatroomDirective() {
-  return {
-    templateUrl: 'templates/chatroom.html',
-    replace: true,
-    controller: 'chatroomCtrl'
-  };
-}
+const chatroomComponent = {
+  templateUrl: 'templates/chatroom.html',
+  replace: true,
+  controller: 'chatroomCtrl'
+};
 
-module.exports = ChatroomDirective;
+module.exports = chatroomComponent;
