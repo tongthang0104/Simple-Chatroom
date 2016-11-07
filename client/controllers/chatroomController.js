@@ -3,7 +3,7 @@
 function chatroomCtrl($scope, services, $interval) {
 
   $interval(function() {
-    $scope.fetchAllMessages();
+    $scope.fetchAllUsers();
   }, 5000);
 
   $scope.user = {};

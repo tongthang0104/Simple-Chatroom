@@ -15,7 +15,7 @@ There are three methods for getting started with this repo.
 ####DEMO#####
 
 ```
-	> Go To
+	> Go To https://stellachallenge.herokuapp.com/
 	> create a new nickname
 	> Enjoy chatting
 ```
@@ -25,6 +25,7 @@ There are three methods for getting started with this repo.
 ```
 	> cd StellaCodingChallenge
 	> npm install
+	> webpack
 	> npm start
 ```
 
@@ -33,5 +34,6 @@ Download the .zip file.  Extract the contents of the zip file, then open your te
 
 ```
 	> npm install
+	> webpack
 	> npm start
 ```
