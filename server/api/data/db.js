@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const dburl = 'mongodb://localhost:27017/chatroom';
 const deployUrl = 'mongodb://heroku_h9xrbbjt:9a2mopf4b769c5ff7d94mvqpes@ds145677.mlab.com:45677/heroku_h9xrbbjt';
 
-mongoose.connect(dburl);
+mongoose.connect(deployUrl);
 mongoose.connection.on('connected', function() {
-  console.log('mongoose connected to ', dburl);
+  console.log('mongoose connected to ', deployUrl);
 });
 
 mongoose.connection.on('disconnected', function() {
