@@ -1,0 +1,6 @@
+<div >
+  <div class="normal-message" ng-class="{others:self!==info.userId,self:self===info.userId}">
+    <div class="name-wrapper"><span>{{info.nickname}} @ </span><span>{{time |  date: 'HH:mm:ss' }}</span></div>
+    <div class="content-wrapper"><span class="content">{{info.message}}</span><img class="avatar" src={{info.avatar}}></simgpan></div>
+  </div>
+</div>

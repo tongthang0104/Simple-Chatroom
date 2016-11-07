@@ -36,10 +36,10 @@ function services($http, $window) {
     });
   };
 
-  this.fetchMessages = function() {
+  this.fetchAllMessages = function() {
     return $http({
       method: 'GET',
-      url: 'api/chat/fetchAll'
+      url: 'api/chat/fetchAllMessages'
     }).then(function(response) {
       return response;
     }).catch(function(err) {

@@ -4,7 +4,11 @@ const messagesComponent = function() {
   return {
     templateUrl: 'templates/message.html',
     replace: true,
-    controller: 'chatCtrl'
+    scope: {
+      info: '=',
+      self: '=',
+      scrolltothis: '&'
+    }
   };
 };
 

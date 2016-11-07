@@ -1,8 +1,47 @@
-<div>
-  <h1>This is home</h1>
-  <div>{{user.nickname}}</div>
-  <input class="nickname" type="text" ng-model="user.nickname"/>
-  <div class="btn">
-      <a href="" ng-click="register()">Log in</a>
+<!-- Login page -->
+<div class="registerForm-container" ng-show="!logined">
+  <form class="form-inline login" novalidate name="registerForm" ng-submit="register()">
+    <h1>Simple Chatroom</h1>
+    <div class="form-group">
+        <label for="nickname" class="sr-only"></label>
+        <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+            <input type="text" class="form-control" id="nickname" placeholder="Enter your nickname" ng-model="user.nickname" required/>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" ng-disabled="registerForm.$invalid">LOG IN</button>
+  </form>
+</div>
+
+<!-- Chat room  -->
+<div class="chat-room-wrapper" ng-show="logined" ng-init="fetchAllUsers()">
+
+  <!-- User lists -->
+  <div class="online panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title">Users<span class="user-number">{{users.length}}</span></h3>
+    </div>
+
+    <!--User component -->
+    <div class="user-wrapper panel-body">
+      <users value="user" ng-repeat="user in users"></users>
+    </div>
+
+  </div>
+
+  <!-- Messages -->
+  <div class="chat-room panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title">Public Chatroom</h3>
+    </div>
+    <div id="message-wrapper" class="message-wrapper panel-body">
+      <messages self="user.user._id" scrolltothis="scrollToBottom()" info="message" ng-repeat="message in messages"></messages>
+    </div>
+    <div class="panel-footer">
+      <form class="post-form form-inline" novalidate name="chatform" ng-submit="handleSubmit()">
+        <input type="text" class="form-control" ng-model="user.message" placeholder="Enter your message here" required>
+        <button type="submit" class="btn btn-success" ng-disabled="chatform.$invalid">Send</button>
+      </form>
+    </div>
   </div>
 </div>

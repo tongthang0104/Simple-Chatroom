@@ -37,5 +37,5 @@ process.on('SIGUSR2', function() {
   });
 });
 
-// Bring in schemas and models
 require('./user.model');
+require('./message.model');
