@@ -10,15 +10,21 @@ function chatroomCtrl($scope, services, $interval) {
   $scope.users = [];
   $scope.messages = [];
   $scope.message = {};
+  $scope.notification = {};
   $scope.logined = false;
 
   // User register
   $scope.register = function() {
-    console.log('user is registering');
     services.register($scope.user).then(function(data) {
       $scope.logined = true;
       $scope.user = data;
-      console.log('user registering response: ', data);
+
+      console.log('user is registering:', data);
+      $scope.notification = {
+        message: data.user.nickname,
+        type: 'notification'
+      };
+      $scope.fetchAllUsers();
     }).catch(function(error) {
       console.error(error);
     });
@@ -30,8 +36,8 @@ function chatroomCtrl($scope, services, $interval) {
 
   // Send message
   $scope.handleSubmit = function() {
-    services.sendMessages($scope.user).then(function(data) {
-      console.log('message sent', data);
+    $scope.user.type = 'normal';
+    services.sendMessages($scope.user).then(function() {
       $scope.user.message = '';
       $scope.fetchAllMessages();
     });
@@ -40,7 +46,6 @@ function chatroomCtrl($scope, services, $interval) {
   $scope.fetchAllUsers = function() {
     $scope.fetchAllMessages();
     services.fetchAllUsers().then(function(users) {
-      console.log('All users', users);
       $scope.users = users;
     }).catch(function(error) {
       console.error(error);
@@ -50,7 +55,8 @@ function chatroomCtrl($scope, services, $interval) {
   // Get all messages
   $scope.fetchAllMessages = function() {
     services.fetchAllMessages().then(function(response) {
-      $scope.messages = response.data
+      $scope.messages = response.data;
+      $scope.messages.unshift($scope.notification);
       console.log('all messages', response.data);
     }).catch(function(error) {
       console.error(error);

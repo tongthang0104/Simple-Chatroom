@@ -1,6 +1,10 @@
-<div >
-  <div class="normal-message" ng-class="{others:self!==info.userId,self:self===info.userId}">
-    <div class="name-wrapper"><span>{{info.nickname}} @ </span><span>{{time |  date: 'HH:mm:ss' }}</span></div>
-    <div class="content-wrapper"><span class="content">{{info.message}}</span><img class="avatar" src={{info.avatar}}></simgpan></div>
+<div ng-switch on="info.type">
+
+  <div class="system-notification" ng-switch-when="notification">Welcome <strong><span style="color: red; font-size: 20px">{{info.message}}</span></strong>
+    </div>
+
+  <div class="normal-message" ng-class="{others:self!==info.userId,self:self===info.userId}" ng-switch-when="normal">
+    <div class="name-wrapper"><span>{{info.nickname}} @ </span><span>{{info.createOn |  date: 'HH:mm:ss' }}</span></div>
+    <div class="content-wrapper"><span class="content">{{info.message}}</span><img class="avatar" src={{info.avatar}}/></div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 <!-- Login page -->
-<div class="registerForm-container" ng-show="!logined">
+<div class="registerForm-container" ng-if="!logined">
   <form class="form-inline login" novalidate name="registerForm" ng-submit="register()">
     <h1>Simple Chatroom</h1>
     <div class="form-group">
@@ -14,7 +14,7 @@
 </div>
 
 <!-- Chat room  -->
-<div class="chat-room-wrapper" ng-show="logined" ng-init="fetchAllUsers()">
+<div class="chat-room-wrapper" ng-if="logined" ng-init="fetchAllUsers()">
 
   <!-- User lists -->
   <div class="online panel panel-success">

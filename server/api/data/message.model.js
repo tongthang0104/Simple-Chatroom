@@ -11,6 +11,11 @@ const messagesSchema = new mongoose.Schema({
     require: true
   },
 
+  type: {
+    type: String,
+    require: true
+  },
+
   avatar: {
     type: String,
     require: true

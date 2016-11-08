@@ -9,7 +9,8 @@ module.exports.sendMessages = function(req, res) {
     userId: user.user._id,
     nickname: user.user.nickname,
     avatar: user.user.avatar,
-    message: user.message
+    message: user.message,
+    type: user.type
   }, function(err, message) {
     if (err) {
       console.error(err);
@@ -31,7 +32,7 @@ module.exports.fetchAllMessages = function(req, res) {
         .status(500)
         .json(err);
       } else {
-        console.log('Found all messages', messages.length);
+        console.log('Found all messages', messages);
         res.json(messages);
       }
     });

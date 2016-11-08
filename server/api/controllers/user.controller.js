@@ -1,32 +1,27 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
 module.exports.register = function(req, res) {
-  console.log('user registering');
-
   const nickname = req.body.nickname;
-  const avatar = `http://api.adorable.io/avatar/50/${nickname}`;
 
   User.create({
-    nickname: nickname,
-    avatar: avatar
+    nickname: nickname
   }, function(err, user) {
     if (err) {
       console.error(err);
       res.status(400).json(err);
     } else {
       const token = jwt.sign({nickname: user.nickname}, 's3cr3t', {expiresIn: 3600});
-
-      console.log('user created', user);
-      res.status(201).json({success: true, token: token, user: user});
+      user.avatar = `https://api.adorable.io/avatar/50/${user._id}`
+      user.save(function(err, userUpdated) {
+        res.status(201).json({success: true, token: token, user: user});
+      })
     }
   });
 };
 
 module.exports.fetchAllUsers = function(req, res) {
-  console.log('Get all users');
-
   User
     .find()
     .exec(function(err, users) {
