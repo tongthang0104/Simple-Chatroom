@@ -15,7 +15,7 @@ There are three methods for getting started with this repo.
 ####DEMO#####
 
 ```
-	> Go To https://stellachallenge.herokuapp.com/
+	> Go To https://publicchatroom.herokuapp.com/
 	> create a new nickname
 	> Enjoy chatting
 ```
