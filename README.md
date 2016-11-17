@@ -1,4 +1,4 @@
-# StellaCodingChallenge
+# Simple chatroom
 
 ###Description###
 
@@ -23,7 +23,7 @@ There are three methods for getting started with this repo.
 ####Familiar with Git?#####
 
 ```
-	> cd StellaCodingChallenge
+	> cd SimpleChatroom
 	> npm install
 	> webpack
 	> npm start
